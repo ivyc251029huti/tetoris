@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Tetris Game</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <!-- =========================
+             左側：ゲーム情報
+        ========================== -->
+
+        <div class="game-info">
+
+            <h1>TETRIS</h1>
+
+            <div class="score-box">
+
+                <h2>SCORE</h2>
+
+                <div id="score">0</div>
+
+            </div>
+
+
+            <div class="controls-info">
+
+                <h3>Controls</h3>
+
+                <p>← → : Move</p>
+                <p>↓ : Soft Drop</p>
+                <p>↑ / X : Rotate</p>
+                <p>Z : Reverse Rotate</p>
+                <p>Space : Hard Drop</p>
+                <p>C : Hold</p>
+
+            </div>
+
+
+            <button id="start-btn">
+                START GAME
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             HOLD
+        ========================== -->
+
+        <div class="hold-box">
+
+            <h3>HOLD</h3>
+
+            <canvas
+                id="hold"
+                width="100"
+                height="100">
+            </canvas>
+
+        </div>
+
+
+        <!-- =========================
+             テトリス本体
+        ========================== -->
+
+        <canvas
+            id="tetris"
+            width="200"
+            height="400">
+        </canvas>
+
+
+        <!-- =========================
+             NEXT
+        ========================== -->
+
+        <div class="hold-next">
+
+            <div class="next-box">
+
+                <h3>NEXT</h3>
+
+                <canvas
+                    id="next1"
+                    width="100"
+                    height="100">
+                </canvas>
+
+                <canvas
+                    id="next2"
+                    width="100"
+                    height="100">
+                </canvas>
+
+                <canvas
+                    id="next3"
+                    width="100"
+                    height="100">
+                </canvas>
+
+                <canvas
+                    id="next4"
+                    width="100"
+                    height="100">
+                </canvas>
+
+                <canvas
+                    id="next5"
+                    width="100"
+                    height="100">
+                </canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         スマホ用操作ボタン
+    ========================== -->
+
+    <div class="mobile-controls">
+
+        <div class="mobile-row rotation-row">
+
+            <button
+                class="touch-btn rotate-btn"
+                data-key="KeyZ">
+                Z
+            </button>
+
+            <button
+                class="touch-btn rotate-btn"
+                data-key="ArrowUp">
+                ↑
+            </button>
+
+            <button
+                class="touch-btn rotate-btn"
+                data-key="KeyX">
+                X
+            </button>
+
+        </div>
+
+
+        <div class="mobile-row movement-row">
+
+            <button
+                class="touch-btn"
+                data-key="ArrowLeft">
+                ←
+            </button>
+
+            <button
+                class="touch-btn"
+                data-key="ArrowDown">
+                ↓
+            </button>
+
+            <button
+                class="touch-btn"
+                data-key="ArrowRight">
+                →
+            </button>
+
+            <button
+                class="touch-btn drop-btn"
+                data-key="Space">
+                DROP
+            </button>
+
+        </div>
+
+
+        <div class="mobile-row">
+
+            <button
+                class="touch-btn hold-btn"
+                data-key="KeyC">
+                HOLD
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>

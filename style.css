@@ -1,0 +1,717 @@
+/* =========================================
+   背景
+========================================= */
+
+@keyframes bg-pulse {
+
+    0%, 100% {
+        background: #202028;
+    }
+
+    50% {
+        background: #252530;
+    }
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+
+    width: 100%;
+    min-height: 100%;
+
+    margin: 0;
+}
+
+
+body {
+
+    background: #202028;
+
+    color: #fff;
+
+    font-family:
+        'Press Start 2P',
+        cursive;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    animation:
+        bg-pulse 4s ease-in-out infinite;
+
+    overflow-x: hidden;
+
+    touch-action: manipulation;
+}
+
+
+/* =========================================
+   ゲーム全体
+========================================= */
+
+.game-container {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 30px;
+
+    border: 4px solid #fff;
+
+    border-radius: 10px;
+
+    background: #000;
+
+    box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================
+   左側
+========================================= */
+
+.game-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    width: 200px;
+
+    min-height: 600px;
+
+    text-align: right;
+}
+
+
+/* =========================================
+   TETRIS
+========================================= */
+
+h1 {
+
+    font-size: 32px;
+
+    margin: 40px 0 20px 0;
+
+    color: #f0f;
+
+    text-shadow:
+        2px 2px #fff;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   SCORE
+========================================= */
+
+.score-box {
+
+    background: #333;
+
+    padding: 10px;
+
+    border: 2px solid #555;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+
+.score-box h2 {
+
+    font-size: 16px;
+
+    margin: 0 0 10px 0;
+
+    color: #aaa;
+}
+
+
+#score {
+
+    font-size: 24px;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   操作説明
+========================================= */
+
+.controls-info {
+
+    font-size: 10px;
+
+    color: #aaa;
+
+    line-height: 1.6;
+
+    text-align: left;
+
+    background: #111;
+
+    padding: 10px;
+
+    border: 1px solid #333;
+}
+
+
+.controls-info h3 {
+
+    margin-top: 0;
+
+    color: #fff;
+
+    border-bottom: 1px solid #555;
+
+    padding-bottom: 5px;
+}
+
+
+/* =========================================
+   メインCanvas
+========================================= */
+
+canvas {
+
+    display: block;
+
+    border: 2px solid #333;
+
+    background: #000;
+
+    image-rendering: pixelated;
+}
+
+
+#tetris {
+
+    width: 400px;
+
+    height: 800px;
+
+    animation:
+        canvas-glow 3s ease-in-out infinite;
+}
+
+
+@keyframes canvas-glow {
+
+    0%, 100% {
+
+        box-shadow:
+            0 0 5px rgba(255, 0, 255, 0.5),
+            0 0 10px rgba(255, 0, 255, 0.3);
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 20px rgba(255, 0, 255, 0.8),
+            0 0 30px rgba(255, 0, 255, 0.5);
+    }
+}
+
+
+/* =========================================
+   HOLD
+========================================= */
+
+.hold-box {
+
+    background: #111;
+
+    border: 2px solid #333;
+
+    padding: 10px;
+
+    text-align: center;
+
+    width: 124px;
+
+    position: absolute;
+
+    left: 10px;
+
+    top: 10px;
+}
+
+
+.hold-box h3 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 14px;
+}
+
+
+#hold {
+
+    width: 100px;
+
+    height: 100px;
+
+    animation: none;
+}
+
+
+/* =========================================
+   NEXT
+========================================= */
+
+.hold-next {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    width: 120px;
+}
+
+
+.next-box {
+
+    background: #111;
+
+    border: 2px solid #333;
+
+    padding: 10px;
+
+    text-align: center;
+
+    width: 120px;
+}
+
+
+.next-box h3 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 14px;
+}
+
+
+.next-box canvas {
+
+    width: 100px;
+
+    height: 100px;
+
+    margin: 5px auto;
+
+    animation: none;
+}
+
+
+/* =========================================
+   START BUTTON
+========================================= */
+
+button {
+
+    background: #f0f;
+
+    color: #fff;
+
+    border: none;
+
+    padding: 15px;
+
+    font-family:
+        'Press Start 2P',
+        cursive;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    margin-top: 20px;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+
+button:hover {
+
+    background: #b0b;
+}
+
+
+button:active {
+
+    transform:
+        translateY(2px);
+}
+
+
+/* =========================================
+   スマホ操作
+========================================= */
+
+.mobile-controls {
+
+    display: none;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    touch-action: manipulation;
+}
+
+
+.mobile-row {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+
+.touch-btn {
+
+    width: 65px;
+
+    height: 55px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border-radius: 10px;
+
+    border: 2px solid #777;
+
+    background: #222;
+
+    color: #fff;
+
+    font-family:
+        'Press Start 2P',
+        cursive;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 4px 0 #111;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    touch-action: manipulation;
+}
+
+
+.touch-btn:active {
+
+    transform:
+        translateY(4px);
+
+    box-shadow:
+        0 0 0 #111;
+
+    background: #555;
+}
+
+
+.rotate-btn {
+
+    width: 70px;
+
+    height: 50px;
+}
+
+
+.drop-btn {
+
+    width: 85px;
+
+    font-size: 10px;
+}
+
+
+.hold-btn {
+
+    width: 120px;
+}
+
+
+/* =========================================
+   スマホ
+========================================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        align-items: flex-start;
+
+        overflow-y: auto;
+
+        padding: 10px 0 20px;
+    }
+
+
+    .game-container {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        grid-template-rows:
+            auto auto;
+
+        gap: 10px;
+
+        width: 100%;
+
+        max-width: 430px;
+
+        padding: 10px;
+
+        border-width: 2px;
+
+        align-items: start;
+
+        justify-items: center;
+    }
+
+
+    .game-info {
+
+        width: 100%;
+
+        min-height: auto;
+
+        grid-column: 1 / 3;
+
+        grid-row: 1;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    h1 {
+
+        font-size: 24px;
+
+        margin: 5px 0 10px;
+    }
+
+
+    .score-box {
+
+        width: 180px;
+
+        margin-bottom: 5px;
+    }
+
+
+    .score-box h2 {
+
+        font-size: 12px;
+    }
+
+
+    #score {
+
+        font-size: 18px;
+    }
+
+
+    .controls-info {
+
+        display: none;
+    }
+
+
+    #start-btn {
+
+        margin-top: 5px;
+
+        padding: 10px;
+
+        font-size: 10px;
+    }
+
+
+    .hold-box {
+
+        position: static;
+
+        grid-column: 1;
+
+        grid-row: 2;
+
+        width: 100px;
+
+        padding: 5px;
+
+        justify-self: end;
+    }
+
+
+    .hold-box h3 {
+
+        font-size: 10px;
+
+        margin-bottom: 5px;
+    }
+
+
+    #hold {
+
+        width: 80px;
+
+        height: 80px;
+    }
+
+
+    #tetris {
+
+        grid-column: 1 / 3;
+
+        grid-row: 2;
+
+        width: min(
+            50vw,
+            300px
+        );
+
+        height: auto;
+
+        aspect-ratio: 1 / 2;
+
+        justify-self: center;
+    }
+
+
+    .hold-next {
+
+        grid-column: 2;
+
+        grid-row: 2;
+
+        width: 100px;
+
+        justify-self: start;
+    }
+
+
+    .next-box {
+
+        width: 90px;
+
+        padding: 5px;
+    }
+
+
+    .next-box h3 {
+
+        font-size: 10px;
+
+        margin-bottom: 5px;
+    }
+
+
+    .next-box canvas {
+
+        width: 70px;
+
+        height: 70px;
+
+        margin: 3px auto;
+    }
+
+
+    /* スマホボタン表示 */
+
+    .mobile-controls {
+
+        display: block;
+
+        width: 100%;
+
+        max-width: 430px;
+
+        padding:
+            5px 10px 20px;
+    }
+}
+
+
+/* =========================================
+   縦画面が小さいスマホ
+========================================= */
+
+@media (
+    max-width: 700px
+)
+and (
+    max-height: 750px
+) {
+
+    #tetris {
+
+        width: 220px;
+    }
+
+
+    .next-box canvas {
+
+        width: 55px;
+
+        height: 55px;
+    }
+
+
+    #hold {
+
+        width: 65px;
+
+        height: 65px;
+    }
+
+
+    .touch-btn {
+
+        height: 48px;
+    }
+}
